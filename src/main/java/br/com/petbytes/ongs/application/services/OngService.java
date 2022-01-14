@@ -18,7 +18,7 @@ public interface OngService {
 	
 	public void deleteOng(String ongId);
 	
-	default boolean isEnderecoInvalido(Endereco endereco) {
+	default boolean isInvalidEndereco(Endereco endereco) {
 		return endereco == null
 				|| endereco.getLogradouro() == null
 				|| StringUtils.isBlank(endereco.getNome())

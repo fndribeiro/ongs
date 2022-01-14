@@ -38,7 +38,7 @@ public class OngController {
 			return ResponseEntity.badRequest().body("Name must not be null or empty.");
 		}
 		
-		if (service.isEnderecoInvalido(ongRequest.getEndereco())) {
+		if (service.isInvalidEndereco(ongRequest.getEndereco())) {
 			return ResponseEntity.badRequest().body("Invalid adress. Please check if adress has logradouro, nome, numero, cep and cidade.");
 		}
 		
