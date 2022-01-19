@@ -2,6 +2,7 @@ package br.com.petbytes.ongs.ports.controllers;
 
 import java.net.URI;
 import java.text.MessageFormat;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -72,6 +73,14 @@ public class PetController {
 		}
 		
 		return ResponseEntity.ok(pet);
+	}
+	
+	@GetMapping("/byong/{id}")
+	ResponseEntity<List<PetDTO>> findAllPetsByOngId(@PathVariable(value = "id") String id) {
+		
+		List<PetDTO> pets = service.findAllPetsByOngId(id);
+		
+		return ResponseEntity.ok(pets);
 	}
 	
 	@PutMapping("/{id}")

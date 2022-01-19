@@ -1,6 +1,8 @@
 package br.com.petbytes.ongs.application.services.impl;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -130,6 +132,29 @@ public class PetMongoServiceImpl implements PetService {
 	@Override
 	public void deletePet(String petId) {
 		petRepository.deleteById(petId);
+	}
+
+	@Override
+	public List<PetDTO> findAllPetsByOngId(String ongId) {
+		
+		List<PetMongoDataMapper> pets = petRepository.findAllByOngId(ongId);
+		
+		List<PetDTO> petsDto = pets
+			.stream()
+			.map(pet -> {
+				return new PetDTO(
+						pet.getId(), 
+						pet.getNome(), 
+						pet.getTipoPet(), 
+						pet.getSexoPet(), 
+						pet.isCastrado(), 
+						pet.getStatusAdocao(), 
+						pet.getOngId(), 
+						pet.getAdotanteId());
+			})
+			.collect(Collectors.toList());
+		
+		return petsDto;
 	}
 
 }
