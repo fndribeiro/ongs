@@ -4,6 +4,8 @@ import java.net.URI;
 import java.text.MessageFormat;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,8 @@ public class PetController {
 	private PetService service;
 	
 	private static final String NOT_FOUND_MESSAGE = "Pet not for found for the given id.";
+	
+	private final Logger logger = LoggerFactory.getLogger(PetController.class);
 	
 	public PetController(PetService service) {
 		this.service = service;
@@ -78,7 +82,11 @@ public class PetController {
 	@GetMapping("/byong/{id}")
 	ResponseEntity<List<PetDTO>> findAllPetsByOngId(@PathVariable(value = "id") String id) {
 		
+		logger.info("findAllPetsByOngId method started.");
+		
 		List<PetDTO> pets = service.findAllPetsByOngId(id);
+		
+		logger.info("Size of pets list: " + pets.size() + ". OngID: " + id);
 		
 		return ResponseEntity.ok(pets);
 	}
