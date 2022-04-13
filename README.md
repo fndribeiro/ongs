@@ -52,8 +52,9 @@ non governmental organizations responsible for them.
 
 All services are build to run on a Kubernetes cluster.
 
-Docker images were build with Spring Boot Maven Plugin and Packeto Buildpacks.
-All images are on: https://hub.docker.com/repository/docker/fephs/
+Docker images are build with Spring Boot Maven Plugin and Packeto Buildpacks: mvn spring-boot:build-image
+
+Docker push images on: https://hub.docker.com/repository/docker/fephs/
 
 Kubernetes YAML files to run these services can be found in:
 https://github.com/fndribeiro/petbytes-eureka-server/tree/master/kubernetes
